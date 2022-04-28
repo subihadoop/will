@@ -1,0 +1,39 @@
+extends layout
+
+block content
+ 
+  h1= title
+  p Please click and review your will based on bank prescribe else you can submit your will manual
+  table.table.table-hover.table-striped.table-bordered
+    thead
+      tr
+        th #
+        th Title
+        th Author
+        th Review
+        th Action (Accept or Modify will)
+        th Add or Modify Nominee
+        th Photo
+        th phone
+        th Comments
+        th Will Modified
+    tbody
+    - for (var i = 0; i < news.length; ++i) {
+       tr
+         th(scope='row') #{i+1}
+         td #{news[i]['title']}
+         td #{news[i]['author_name']}
+         td
+          a(href="/pdf?id="+news[i]['id'])
+           | Download and Review Will
+         td 
+          a(href="/modify")      
+           |Want to Modify Will
+         td 
+          a(href="/add_nominee")      
+           |Want to Modify Nominee 
+         td #{news[i]['image']}
+         td #{news[i]['phone']}
+         td #{news[i]['comment']}
+         td This will modified #{news[i]['will_modified']} Times by #{news[i]['author_name']}
+    - }   

@@ -1,0 +1,33 @@
+extends layout
+
+block content
+        div.text-center
+            form(class="form-signin" method="POST" action="/mod")
+                #error
+                    if error
+                        p.text-danger Error!!!
+
+                - var h1Classes = ['h3', 'mb-3', 'font-weight-normal']
+                h1= title
+                p Upload your Nominee Details to #{title}
+                //-input ID
+                label(for="inputId" class="sr-only") Enter your ID
+                input(type="id" name="id" id="inputId" class="form-control" placeholder="Enter your ID" required)
+                label( for="inputPhone" class="sr-only") Please enter the phone no.
+                input(type="phone" name="phone" id="inputPhone" class="form-control" placeholder="Phone" required autofocus)
+                //-input comment
+                label( for="inputComment" class="sr-only") Please modify your will carefully
+                input(type="comment" name="comment" id="inputComment" class="form-control" placeholder="Please modify your will carefully" required autofocus)
+                
+                input(type='file', name='imageupload')
+                //-input(type='submit', name='uploadimage', value='Upload Image')
+                //-remember Checkbox
+                //- var divClasses=['checkbox', 'mb-3'];
+                //-div(class=divClasses)
+                    label
+                        input(type="checkbox" value="remember-me")
+                        span Remember me
+
+                //-signIn button
+                - var buttonClass=['btn', 'btn-lg', 'btn-primary', 'btn-block'];
+                button(class=buttonClass type="submit") Submit
