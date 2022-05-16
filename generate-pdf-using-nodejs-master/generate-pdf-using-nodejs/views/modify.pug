@@ -11,8 +11,8 @@ block content
                 h1= title
                 p Upload your Nominee Details to #{title}
                 //-input ID
-                label(for="inputId" class="sr-only") Enter your ID
-                input(type="id" name="id" id="inputId" class="form-control" placeholder="Enter your ID" required)
+                label(for="inputId" class="sr-only") Enter your Account ID
+                input(type="id" name="id" id="inputId" class="form-control" placeholder="Enter your account ID" required)
                 label( for="inputPhone" class="sr-only") Please enter the phone no.
                 input(type="phone" name="phone" id="inputPhone" class="form-control" placeholder="Phone" required autofocus)
                 //-input comment
@@ -29,5 +29,22 @@ block content
                         span Remember me
 
                 //-signIn button
-                - var buttonClass=['btn', 'btn-lg', 'btn-primary', 'btn-block'];
-                button(class=buttonClass type="submit") Submit
+                - var buttonClass=['btn', 'btn-lg', 'btn-primary'];
+                
+                    //- button(class=buttonClass type="submit") Submit
+                script.
+                    function popup() {
+                       popupS.confirm({
+                       content: 'Click yes to Confirm',
+                       labelOk: 'Yes',
+                       labelCancel: 'No',
+                       onSubmit: function() {
+                       window.location.href = "/"
+                       },
+                       onClose: function() {
+                        window.location.href = "/mod"
+                       }
+                    });
+                    }
+                td
+                button(class=buttonClass onclick="popup()") Click to Update

@@ -5,7 +5,7 @@ html(lang="en")
     //- Navigation
     nav(class="navbar navbar-expand-lg navbar-dark bg-dark fixed-bottom")
       div(class="container")
-        a(class="navbar-brand" href="/") NodeJs-Pug-Starter
+        
         button(class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarResponsive" aria-controls="navbarResponsive" aria-expanded="false" aria-label="Toggle navigation")
           span(class="navbar-toggler-icon")
             
@@ -15,14 +15,51 @@ html(lang="en")
               a(class="nav-link" href="/") Home
             li(class="nav-item")
               a(class="nav-link" target="_blank" href="https://github.com/abdulaz1z/nodejs-pug-starter") Documentation
+                  
     
     //- Page Content
     section
       div(class="container")
         div(class="row")
           div(class="col-lg-6")
-            h1(class="mt-5 text-white") NodeJs-Pug-Starter
-            p(class= "text-light") This project is a simple application skeleton for a NodeJs web app with PugJs templating. You can use it to quickly bootstrap your NodeJs webapp projects and dev environment for these projects.
-            
+            h1(class="mt-5 text-black") Please Add or Modify your Nominee and Digital assets details
+            p(class= "text-dark") 
+table.table.table-hover.table-striped.table-bordered
+    thead
+      tr
+        th Select for Add or modify
+        th Nominee ID
+        th Nominee First Name
+        th Nominee Middle Name
+        th Nominee last Name
+        th City
+        th Nominee Mobile No.
+        th Nominee occupation
+        th Nominee Date of Birth
+        th Nominee parent_id
+        th Nominee gender
+    tbody
+    - for (var i = 0; i < nom.length; ++i) {
+      tr
+      td
+       input(type="checkbox", id=nom.nom_id, 
+                     name=nom.nom_id, value=nom.nom_id)
+      
+      td(scope='row') #{i+1}
+      td #{nom[i]['fname']}
+      td #{nom[i]['mname']}
+      td #{nom[i]['ltname']}
+      td #{nom[i]['city']}
+      td #{nom[i]['mobileno']}
+      td #{nom[i]['occupation']}
+      td #{nom[i]['dob']}
+      td #{nom[i]['parent_id']}
+      td #{nom[i]['gender']}
+    - }
+    form(method="get" action="/add_nom")
+          input(type="submit", value="Add Nominee") 
+    form(method="get" action="/")
+          input(type="submit", value="Back to Home")    
     script(src='vendor/jquery/jquery.min.js')  
     script(src='vendor/bootstrap/js/bootstrap.bundle.min.js')
+    

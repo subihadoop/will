@@ -9,7 +9,12 @@ var index = require('./routes/index');
 var users = require('./routes/users');
 
 var app = express();
+// for body parser. to collect data that sent from the client.
+app.use(express.urlencoded( { extended : false}));
 
+
+// Serve static files. CSS, Images, JS files ... etc
+app.use(express.static(path.join(__dirname, 'public')));
 // view engine setup
 app.set('views', path.join(__dirname, 'views'));
 app.set('view engine', 'pug');
@@ -27,7 +32,7 @@ app.use('/users', users);
 
 // catch 404 and forward to error handler
 app.use(function(req, res, next) {
-  var err = new Error('Not Found');
+  var err = new Error('Record Not Found');
   err.status = 404;
   next(err);
 });

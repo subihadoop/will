@@ -13,6 +13,31 @@ CREATE TABLE `tbl_posts` (
   `detail` text NOT NULL,
   `publish_date` datetime NOT NULL,
   `author_name` varchar(200) NOT NULL,
+  `link` varchar(200) NOT NULL,
+  `flg` char(2) NOT NULL,
+  `phone` int(20) NOT NULL,
+  `image` blob,
+  `comment` varchar(200) NOT NULL,
+   `will_modified` int(200) NOT NULL
+) ENGINE=InnoDB DEFAULT CHARSET=latin1;
+Alter table tbl_posts add `flg` char(2) NOT NULL;
+Alter table tbl_posts add `phone` char(60) NOT NULL;
+Alter table tbl_posts add `image` blob;
+Alter table tbl_posts add `comment` varchar(200) NOT NULL;
+Alter table tbl_posts add  `will_modified` int(200) NOT NULL;
+
+, `phone` int(20) NOT NULL,`image` blob,`comment` varchar(200) NOT NULL, `will_modified` int(200) NOT NULL ;
+
+
+SELECT `id`, `title`, `detail`, `author_name`, `link`,
+ `publish_date`, `flg`, `phone`, `image`, `comment`, `will_modified`
+
+CREATE TABLE `users` (
+  `username` int(11) NOT NULL,
+  `fullname` varchar(500) NOT NULL,
+  `password` text NOT NULL,
+  `publish_date` datetime NOT NULL,
+  `author_name` varchar(200) NOT NULL,
   `link` varchar(200) NOT NULL
 ) ENGINE=InnoDB DEFAULT CHARSET=latin1;
 
@@ -44,3 +69,43 @@ ALTER TABLE `tbl_posts`
 --
 ALTER TABLE `tbl_posts`
   MODIFY `id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=4;COMMIT;
+
+CREATE TABLE nominee
+   (
+       nom_id VARCHAR(6),
+       fname VARCHAR(30),
+       mname VARCHAR(30),
+       ltname VARCHAR(30),
+       city VARCHAR(15),
+       mobileno VARCHAR(10),
+       occupation VARCHAR(10),
+       dob DATE,
+       parent_id int,
+       gender  VARCHAR(10),
+       id int,
+       CONSTRAINT nominee_pk PRIMARY KEY(nom_id),
+       CONSTRAINT account_main_fk FOREIGN KEY(parent_id) REFERENCES tbl_posts(id)
+   );
+ALTER TABLE `nominee`
+  MODIFY `nom_id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=4;COMMIT;
+
+Alter table nominee add created_date  DATE;
+
+INSERT INTO `nominee` (`nom_id`, `fname`, `mname`, `ltname`, `city`, 
+`mobileno`,`occupation`,`dob`,`parent_id`,`gender` ) VALUES (2,'Peter','','Parker','Hyderabad','00000000','SE','1988-01-01',1,'Male');
+
+CREATE TABLE digi_assets
+   (
+       digi_id VARCHAR(6),
+       digi_name VARCHAR(30),
+       digi_mod_date date,
+       digi_type VARCHAR(30),
+       digi_parent_id int,
+       id int,
+       CONSTRAINT digi_pk PRIMARY KEY(digi_id),
+       CONSTRAINT digi_main_fk FOREIGN KEY(digi_parent_id) REFERENCES tbl_posts(id)
+   );
+INSERT INTO `digi_assets` (`digi_id`, `digi_name`, `digi_mod_date`, `digi_type`, `digi_parent_id`) VALUES (1,'Shares','2022-05-02','Demat Account','1');
+
+ALTER TABLE `digi_assets`
+  MODIFY `digi_id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=4;COMMIT;

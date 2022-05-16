@@ -1,0 +1,72 @@
+extends layout
+ 
+block content
+
+        div.text-center
+            form(class="form-signin" method="POST" action="/add_nom")
+                #error
+                    if error
+                        p.text-danger Error!!!
+
+                - var h1Classes = ['h3', 'mb-3', 'font-weight-normal']
+                h1= title
+                p Upload your Nominee Details to #{title}
+                
+                //-input ID
+                label(for="inputMain_account_id" class="sr-only") Enter your Main_account_id
+                input(type="Main_account_id" name="Main_account_id" id="inputMain_account_id" class="form-control" placeholder="Main_account_id" required)
+
+                label(for="inputFname" class="sr-only") Enter your Nominee First Name
+                input(type="fname" name="fname" id="inputFname" class="form-control" placeholder="Enter your Nominee First Name" required)
+                
+                label( for="inputmname" class="sr-only") Enter your Nominee Middle Name
+                input(type="mname" name="mname" id="inputmname" class="form-control" placeholder="Enter your Nominee Middle Name" required autofocus)
+                
+                label( for="inputltname" class="sr-only") Enter your Nominee Last Name
+                input(type="ltname" name="ltname" id="inputltname" class="form-control" placeholder="Enter your Nominee Last Name" required autofocus)
+                
+                label( for="inputCity" class="sr-only") Enter your Nominee citi Name
+                input(type="city" name="city" id="inputCity" class="form-control" placeholder="Enter your Nominee citi Name" required autofocus)
+
+                label( for="inputmobileno" class="sr-only") Enter your Nominee Mobileno
+                input(type="mobileno" name="mobileno" id="inputmobileno" class="form-control" placeholder="Enter your Nominee Mobileno" required autofocus)
+
+                label( for="inputoccupation" class="sr-only") Enter your Nominee occupation
+                input(type="occupation" name="occupation" id="inputoccupation" class="form-control" placeholder="Enter your Nominee occupation" required autofocus)
+
+                label( for="inputdob" class="sr-only") Enter your Nominee dob
+                input(type="dob" name="dob" id="inputoccupation" class="form-control" placeholder="Enter your Nominee dob in yyyy-mm-dd format" required autofocus)
+
+                label( for="inputgender" class="sr-only") Enter your Nominee gender
+                input(type="gender" name="gender" id="inputgender" class="form-control" placeholder="Enter your Nominee gender" required autofocus)
+                //-input(type='submit', name='uploadimage', value='Upload Image')
+                //-remember Checkbox
+                //- var divClasses=['checkbox', 'mb-3'];
+                //-div(class=divClasses)
+                    label
+                        input(type="checkbox" value="remember-me")
+                        span Remember me
+                
+                //-signIn button
+                
+                - var buttonClass=['btn', 'btn-lg', 'btn-primary'];
+                
+                    //- button(class=buttonClass type="submit") Submit
+                script.
+                    function popup() {
+                       popupS.confirm({
+                       content: 'Please confirm',
+                       labelOk: 'Yes',
+                       labelCancel: 'No',
+                       onSubmit: function() {
+                       window.location.href = "/"
+                       },
+                       onClose: function() {
+                       console.log(':(');
+                       }
+                    });
+                    }
+                td
+
+                button(class=buttonClass onclick="popup()") Click to Update
+        
