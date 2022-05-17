@@ -21,7 +21,12 @@ block content
                                 
                 label( for="inputdigi_type" class="sr-only") Enter your digi_type
                 input(type="digi_type" name="digi_type" id="inputdigi_type" class="form-control" placeholder="digi_type" required autofocus)
+
+                label( for="Assets_Value" class="sr-only") Assets Value
+                input(type="digi_value" name="digi_value" id="Assets_Value" class="form-control" placeholder="digi_value" required autofocus)
                 
+                label( for="Allocate_Percentage" class="sr-only") Allocate Percentage
+                input(type="digi_perce" name="digi_perce" id="Allocate_Percentage" class="form-control" placeholder="digi_perce" required autofocus)
                 
                 //-input(type='submit', name='uploadimage', value='Upload Image')
                 //-remember Checkbox
@@ -43,7 +48,7 @@ block content
                        labelOk: 'Yes',
                        labelCancel: 'No',
                        onSubmit: function() {
-                       window.location.href = "/"
+                       window.location.href = "/index"
                        },
                        onClose: function() {
                        console.log(':(');

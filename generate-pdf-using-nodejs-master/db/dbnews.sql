@@ -1,6 +1,15 @@
 CREATE DATABASE IF NOT EXISTS `dbnews` DEFAULT CHARACTER SET latin1 COLLATE latin1_swedish_ci;
 USE `dbnews`;
 
+ TABLE `users` (
+  `username` int(11) NOT NULL,
+  `fullname` varchar(500) NOT NULL,
+  `password` text NOT NULL,
+  `publish_date` datetime NOT NULL,
+  `author_name` varchar(200) NOT NULL,
+  `link` varchar(200) NOT NULL
+) ENGINE=InnoDB DEFAULT CHARSET=latin1;
+
 -- --------------------------------------------------------
 
 --
@@ -20,35 +29,16 @@ CREATE TABLE `tbl_posts` (
   `comment` varchar(200) NOT NULL,
    `will_modified` int(200) NOT NULL
 ) ENGINE=InnoDB DEFAULT CHARSET=latin1;
-Alter table tbl_posts add `flg` char(2) NOT NULL;
-Alter table tbl_posts add `phone` char(60) NOT NULL;
-Alter table tbl_posts add `image` blob;
-Alter table tbl_posts add `comment` varchar(200) NOT NULL;
-Alter table tbl_posts add  `will_modified` int(200) NOT NULL;
 
-, `phone` int(20) NOT NULL,`image` blob,`comment` varchar(200) NOT NULL, `will_modified` int(200) NOT NULL ;
-
-
-SELECT `id`, `title`, `detail`, `author_name`, `link`,
- `publish_date`, `flg`, `phone`, `image`, `comment`, `will_modified`
-
-CREATE TABLE `users` (
-  `username` int(11) NOT NULL,
-  `fullname` varchar(500) NOT NULL,
-  `password` text NOT NULL,
-  `publish_date` datetime NOT NULL,
-  `author_name` varchar(200) NOT NULL,
-  `link` varchar(200) NOT NULL
-) ENGINE=InnoDB DEFAULT CHARSET=latin1;
 
 --
 -- Dumping data for table `tbl_posts`
 --
 
 INSERT INTO `tbl_posts` (`id`, `title`, `detail`, `publish_date`, `author_name`, `link`) VALUES
-(1, 'Raspberry Pi scores UK\'s top engineering award', 'The team behind the device was awarded the Royal Academy of Engineering\'s MacRobert Prize at a ceremony in London last night.\r\n\r\nThe tiny computer launched in 2012. Its designers hoped to introduce children to coding and had modest ambitions.\r\n\r\nThey beat two other finalists, cyber-security company Darktrace and radiotherapy pioneers Vision RT, to win the prize.\r\n\r\nPrevious winners of the innovation award, which has been run since 1969, include the creators of the CT (computerised tomography) scanner; the designers of the Severn Bridge; and the team at Microsoft in Cambridge that developed the Kinect motion sensor.\r\nExceeded expectations\r\n\r\nA tiny cheap computer that might encourage youngsters to learn programming was the idea of a small team of scientists and Cambridge University academics.\r\n\r\nThey hoped to sell a few thousand units, but sales have now passed 14 million, and the Pi is widely used in factories as well as in classrooms and homes.\r\n\r\nOne of the MacRobert award judges, Dr Frances Saunders, said a small engineering team had redefined home computing.', '2017-07-02 00:00:00', 'BBC News', 'http://www.bbc.com/news/technology-40444356'),
-(2, 'Future Energy: China leads world in solar power production', 'Ten years ago, Geof Moser had just graduated with a master\'s degree in solar energy from Arizona State University - but he didn\'t feel much opportunity lay at his feet in his home country.\r\n\r\nSo he headed for China.\r\n\r\n\"The solar industry was fairly small and there weren\'t a lot of jobs,\" he remembers. \"Just a few for installation.\" But the Chinese government had big ambitions to expand solar and Moser saw his chance.\r\n\r\nHe spent some years accumulating knowledge about the Chinese solar industry, before co-founding Symtech Solar, which designs solar panel systems using Chinese parts.\r\nMarket access\r\n\r\nThe idea is to make it easy for organisations outside China to access components without the hassle of having to source and assemble lots of different parts. ', '2017-07-02 00:00:00', 'BBC News', 'http://www.bbc.com/news/business-40341833'),
-(3, 'Securing Your Linux System Bit by Bit', 'As daunting as securing your Linux system might seem, one thing to remember is that every extra step makes a difference. It\'s almost always better to make a modest stride than let uncertainty keep you from starting. Fortunately, there are a few basic techniques that greatly benefit users at all levels, and knowing how to securely wipe your hard drive in Linux is one of them.', '2017-07-02 00:00:00', 'Tech World', 'http://www.technewsworld.com/story/Securing-Your-Linux-System-Bit-by-Bit-84607.html');
+(1, 'Digital will of Mr Jhon', 'Exordium clause:,I state that I am the owner and have absolute right, title and interest on the following immovable properties. (i) {Specify the address of all the immovable properties owned by you.\r\n\r\nwith the details like Area of the property, Schedule of the property (Boundaries)} (ii){In.\r\n\r\n case you are the co-holder of the property with other family members, furnish the full details of other co-holders and their percentage of shares in the property}.\r\n\r\nI state that I have been maintaining the average cash balance in hand or at \r\n\r\nhome to the tune of Rs….for the purpose of emergency purposes.\r\n\r\nI state that I have Bank deposits, Insurance, PPF account, mutual funds, Jewellery, \r\n\r\nShares, and Dmat account  Name of the Depository  in my individual name,  the original records,receipt,PPF passbook,Jewels etc  are kept in the locker No. , (Bank & Branch). The details of above financial products are as under', '2017-07-02 00:00:00', 'Jhon', 'www.wellsfargo.com');
+(2, 'Digital will for Mr Rambo', 'Exordium clause:, Geof Moser had just graduated with a master\'s degree in solar energy from Arizona State University - but he didn\'t feel much opportunity lay at his feet in his home country.\r\n\r\nSo he headed for China.\r\n\r\n\"The solar industry was fairly small and there weren\'t a lot of jobs,\" he remembers. \"Just a few for installation.\" But the Chinese government had big ambitions to expand solar and Moser saw his chance.\r\n\r\nHe spent some years accumulating knowledge about the Chinese solar industry, before co-founding Symtech Solar, which designs solar panel systems using Chinese parts.\r\nMarket access\r\n\r\nThe idea is to make it easy for organisations outside China to access components without the hassle of having to source and assemble lots of different parts. ', '2017-07-02 00:00:00', 'Rambo', 'www.wellsfargo.com'),
+(3, 'Digital will for Mr Arnold', 'Exordium clause :, one thing to remember is that every extra step makes a difference. It\'s almost always better to make a modest stride than let uncertainty keep you from starting. Fortunately, there are a few basic techniques that greatly benefit users at all levels, and knowing how to securely wipe your hard drive in Linux is one of them.', '2017-07-02 00:00:00', 'Arnold', 'www.wellsfargo.com');
 
 --
 -- Indexes for dumped tables
@@ -83,29 +73,29 @@ CREATE TABLE nominee
        parent_id int,
        gender  VARCHAR(10),
        id int,
+       created_date date,
        CONSTRAINT nominee_pk PRIMARY KEY(nom_id),
        CONSTRAINT account_main_fk FOREIGN KEY(parent_id) REFERENCES tbl_posts(id)
    );
 ALTER TABLE `nominee`
   MODIFY `nom_id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=4;COMMIT;
 
-Alter table nominee add created_date  DATE;
-
 INSERT INTO `nominee` (`nom_id`, `fname`, `mname`, `ltname`, `city`, 
-`mobileno`,`occupation`,`dob`,`parent_id`,`gender` ) VALUES (2,'Peter','','Parker','Hyderabad','00000000','SE','1988-01-01',1,'Male');
+`mobileno`,`occupation`,`dob`,`parent_id`,`gender` ) VALUES (1,'Peter','','Parker','Hyderabad','00000000','SE','1988-01-01',1,'Male');
 
 CREATE TABLE digi_assets
    (
-       digi_id VARCHAR(6),
+       digi_id int(6),
        digi_name VARCHAR(30),
        digi_mod_date date,
        digi_type VARCHAR(30),
        digi_parent_id int,
        id int,
-       CONSTRAINT digi_pk PRIMARY KEY(digi_id),
-       CONSTRAINT digi_main_fk FOREIGN KEY(digi_parent_id) REFERENCES tbl_posts(id)
-   );
-INSERT INTO `digi_assets` (`digi_id`, `digi_name`, `digi_mod_date`, `digi_type`, `digi_parent_id`) VALUES (1,'Shares','2022-05-02','Demat Account','1');
+       nom_id varchar(6),
+       Value int,
+       percentage_share int,
+       CONSTRAINT digi_pk PRIMARY KEY(digi_id)       
+       );
+ALTER TABLE `digi_assets` MODIFY digi_id int(6) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=0;
+COMMIT;
 
-ALTER TABLE `digi_assets`
-  MODIFY `digi_id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=4;COMMIT;

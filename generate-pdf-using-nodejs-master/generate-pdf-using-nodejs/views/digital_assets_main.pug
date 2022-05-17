@@ -22,7 +22,7 @@ html(lang="en")
       div(class="container")
         div(class="row")
           div(class="col-lg-6")
-            h1(class="mt-5 text-black") Please Add or Modify your Nominee and Digital assets details
+            h1(class="mt-5 text-black") Please Add or Modify Digital assets details
             p(class= "text-dark") 
 table.table.table-hover.table-striped.table-bordered
     thead
@@ -32,7 +32,9 @@ table.table.table-hover.table-striped.table-bordered
         th digi_name
         th digi_mod_date
         th digi_type
+        th Value of Assets
         th digi_parent_id
+        th Assets Allocation
         
     tbody
     - for (var i = 0; i < digi.length; ++i) {
@@ -45,7 +47,9 @@ table.table.table-hover.table-striped.table-bordered
       td #{digi[i]['digi_name']}
       td #{digi[i]['digi_mod_date']}
       td #{digi[i]['digi_type']}
+      td #{digi[i]['value']}
       td #{digi[i]['digi_parent_id']}
+      td #{digi[i]['percentage_share']}
     - }
     form(method="get" action="/add_digi")
           input(type="submit", value="Add Digital Assets") 

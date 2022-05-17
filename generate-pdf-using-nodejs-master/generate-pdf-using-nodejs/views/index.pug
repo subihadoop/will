@@ -34,20 +34,26 @@ html(lang="en")
         th #
         th Title
         th Author
+        th Account_Type
+        th Account_Status
         th Review
         th Action (Accept or Modify will)
         th Add or Modify Nominee
         th Photo
-        th phone
+        th Phone
         th Comments
         th Will Modified
         th Digital Assets
+        th Digital Assets Allocation
+        th Send Mail
     tbody
     - for (var i = 0; i < news.length; ++i) {
        tr
          th(scope='row') #{i+1}
          td #{news[i]['title']}
          td #{news[i]['author_name']}
+         td Saving Account
+         td Active
          td
           a(href="/pdf?id="+news[i]['id'])
            | Download and Review Will
@@ -64,6 +70,12 @@ html(lang="en")
          td 
           a(href="/digital_assets_main")      
            |Add/Modified Digital Assets 
+         td 
+          a(href="/assets_allocation")      
+           |Digital Assets Allocation
+         td 
+          a(href="http://localhost:8081/index.html")      
+           |Send mail
     - }
     
      

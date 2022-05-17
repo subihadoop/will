@@ -39,18 +39,12 @@ router.use(orm.express("mysql://root:Monu@1234@localhost/dbnews", {
   }
 }));
 
-
-
-
-
 router.get('/', function (req, res, next) {
     res.render('home_page', { title: 'Digital Will' });
   });
 router.get('/login_page', function (req, res, next) {
     res.render('login_page', { title: 'Digital Will' });
   });
-
-
 
 router.get('/index', function (req, res, next) {
   var result = req.models.news.find({
@@ -216,6 +210,8 @@ router.use(orm.express("mysql://root:Monu@1234@localhost/dbnews", {
       digi_mod_date: { type: 'date', time: false },
       digi_type: String,
       digi_parent_id: Number,
+      value: Number,
+      percentage_share: Number
 
     });
     next();
@@ -226,6 +222,7 @@ router.get('/digital_assets_main', (req, res) => {
   }, function (error, digi) {
     if (error) throw error;
     res.render('digital_assets_main', { digi:digi });
+
   });
 });
 
@@ -275,8 +272,6 @@ router.post('/add_nom', function (req, res, next) {
             }
             else {
               console.log("after update"); 
-              
-              
               res.render('record_successfull', { title: "Record updated" });
             }
           }
@@ -301,16 +296,28 @@ router.post('/add_digi', function (req, res, next) {
   const counter = 0;
   const counter_num = 0;
   const Main_account_id = req.body.Main_account_id;
-  let digi_name = req.body.digi_name;
+  const digi_name = req.body.digi_name;
   const digi_type = req.body.digi_type;
+  const value = req.body.digi_value;
+  const digi_perce = req.body.digi_perce;
   const digi_mod_date = new Date();
   
-  const gender  = req.body.gender;
-  connection.query('select will_modified from tbl_posts where  id = ?', [Main_account_id],
-    (error, results) => {
-      if (error) {
+  connection.query('select nom_id from nominee where  nom_id = ?', [Main_account_id],
+  (error, results) => {
+    if (error) {
+      
+      throw error
+    }
+    Object.keys(results).forEach(function (key) {
+      var row = results[key];
+      const nom_num = row.nom_id;
+      
+      
+        connection.query('select will_modified from tbl_posts where  id = ?', [Main_account_id],
+         (error, results) => {
+          if (error) {
         
-        throw error
+          throw error
       }
       Object.keys(results).forEach(function (key) {
         var row = results[key];
@@ -318,9 +325,10 @@ router.post('/add_digi', function (req, res, next) {
         const p_id = Main_account_id;
         const counter_num = row.will_modified + 1;
         const comments = 'Digital assets Added';
+        console.log(nom_num);
+        console.log(value);
         console.log("before update");
-        
-        connection.query('INSERT INTO `digi_assets` (`digi_name`, `digi_mod_date`, `digi_type`, `digi_parent_id`) VALUES (?,?,?,? )',[digi_name,digi_mod_date,digi_type,p_id]),
+        connection.query('INSERT INTO `digi_assets` (`digi_name`, `digi_mod_date`, `digi_type`, `value`,`digi_parent_id`,nom_id,id,percentage_share) VALUES (?,?,?,?,?,?,?,?)',[digi_name,digi_mod_date,digi_type,value,p_id,nom_num,nom_num,digi_perce]),
         console.log("after update");
         connection.query('UPDATE tbl_posts SET will_modified = ?,comment = ? WHERE id = ?', [counter_num, comments,p_id]),
         (error, results) => {
@@ -337,7 +345,8 @@ router.post('/add_digi', function (req, res, next) {
             }
           }
 
-              
+        })
+      })   
       })
       
     });
@@ -399,6 +408,29 @@ router.get('/loggout', (req, res, next) => {
       });
   }
 });
+router.get('/assets_allocation', function (req, res, next) {
+  
+    var allocationList = [];
+  
+    // Connect to MySQL database.
+    var connection = getMySQLConnection();
+    connection.connect();
+    
+    // Do the query to get data.
+    connection.query('SELECT a.digi_id,a.digi_name,a.digi_type,a.percentage_share,b.fname,mname,b.ltname,b.city,b.mobileno,b.occupation,b.gender FROM digi_assets a,nominee b where a.nom_id=b.nom_id  ',
+    function(err, rows) {
+        if (err) {
+          res.status(500).json({"status_code": 500,"status_message": "internal server error"});
+        } else {
+          // Loop check on each row
+                // Render index.pug page using array 
+        res.render('assets_allocation', {"rows": rows});
+        }
+    });
+  });
 
 
+    // Close the MySQL connection
+
+ 
 module.exports = router;
