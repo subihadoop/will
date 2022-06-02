@@ -1,14 +1,11 @@
 CREATE DATABASE IF NOT EXISTS `dbnews` DEFAULT CHARACTER SET latin1 COLLATE latin1_swedish_ci;
 USE `dbnews`;
 
- TABLE `users` (
+ create TABLE `users` (
   `username` int(11) NOT NULL,
   `fullname` varchar(500) NOT NULL,
-  `password` text NOT NULL,
-  `publish_date` datetime NOT NULL,
-  `author_name` varchar(200) NOT NULL,
-  `link` varchar(200) NOT NULL
-) ENGINE=InnoDB DEFAULT CHARSET=latin1;
+  `password` text NOT NULL
+  ) ENGINE=InnoDB DEFAULT CHARSET=latin1;
 
 -- --------------------------------------------------------
 
