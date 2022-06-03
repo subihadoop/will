@@ -1,0 +1,52 @@
+html(lang="en")
+	include includes/head.pug
+	
+	body
+	<header style="background-color: #bcdeef; height: 80px;width: 100%">
+		<center>
+		h1 Digital Will
+		</center>
+		p(class= "text-dark" style="text-align: center;") Please click and review your will based on bank prescribe else you can submit your will manual
+		<h1 style="font-size: 30px; color: white;text-align: center; padding-top: 15px;"> h1= title</h1>
+		//- Navigation
+		nav(class="navbar navbar-expand-lg navbar-dark bg-dark fixed-bottom")
+		div(class="container")
+			button(class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarResponsive" aria-controls="navbarResponsive" aria-expanded="false" aria-label="Toggle navigation")
+			span(class="navbar-toggler-icon")
+				
+			div(class="collapse navbar-collapse" id="navbarResponsive")
+			ul(class="navbar-nav ml-auto")
+				
+		section
+		div(class="container")
+			div(class="row")
+			div(class="col-lg-6")
+			//- h1(class="mt-5 text-white") NodeJs-Pug-Starter
+				p(class= "text-light") This project is a simple application skeleton for a NodeJs web app with PugJs templating. You can use it to quickly bootstrap your NodeJs webapp projects and dev environment for these projects.
+		<nav>
+		<table border="1" align="center">
+		<caption>Generate Digital Will as you Wish</caption>
+		<tr>
+		<th>QR Based Authencation</th>
+		<th>By Login</th>
+		<th>Download Digital will</th>
+		<th>Signup for ditigal will</th>
+		<th>Bio Metric Access</th>
+		</tr>
+		
+		<tr>
+		<td><img src="images/qr.png" width="150" height="150" align="left" />
+		</td>
+		<td><a href="/login_page">
+			<img src="images/login-icon-button.jpg" width="150" height="150" align="center" style="padding-bottom:0.5em;"/>
+		</td>
+		<td><a href="/login_page">
+			<img src="images/download.jpeg" width="150" height="150" align="center" style="padding-bottom:0.5em;"/></td>
+		<td><a href="/login_page">
+			<img src="images/signup.png" width="150" height="150" align="center" style="padding-bottom:0.5em;"/></td>
+		<td><a href="/login_page">
+		<img src="images/bio.jpg" width="150" height="150" align="center" style="padding-bottom:0.5em;"/></td>
+		</tr>
+		</table>   
+		</nav>
+		

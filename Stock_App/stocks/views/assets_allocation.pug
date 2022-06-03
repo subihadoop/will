@@ -1,0 +1,68 @@
+doctype html
+html(lang="en")
+  include includes/head.pug
+  body
+    //- Navigation
+    nav(class="navbar navbar-expand-lg navbar-dark bg-dark fixed-bottom")
+      div(class="container")
+        
+        button(class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarResponsive" aria-controls="navbarResponsive" aria-expanded="false" aria-label="Toggle navigation")
+          span(class="navbar-toggler-icon")
+            
+        div(class="collapse navbar-collapse" id="navbarResponsive")
+          ul(class="navbar-nav ml-auto")
+            li(class="nav-item")
+              a(class="nav-link" href="/") Home
+            li(class="nav-item")
+              a(class="nav-link" target="_blank" href="https://github.com/abdulaz1z/nodejs-pug-starter") Documentation
+                  
+    
+    //- Page Content
+    section
+      div(class="container")
+        div(class="row")
+          div(class="col-lg-6")
+            h1(class="mt-5 text-black") Please Add or Modify your Nominee's Digital assets details
+            p(class= "text-dark") 
+table.table.table-hover.table-striped.table-bordered
+    thead
+      tr
+        th Add/Modify
+        th digi_id
+        th digi_name
+        th digi_type
+        th percentage of share
+        th Nominee First Name
+        th Nominee Middle Name
+        th Nominee last Name
+        th City
+        th Nominee Mobile No.
+        th Nominee occupation
+        th Nominee gender
+        
+        
+    tbody
+    - for (var i = 0; i < rows.length; ++i) {
+      tr
+      td
+       input(type="checkbox", id=rows.digi_id, 
+                     name=rows.digi_id, value=rows.digi_id)
+      
+      td(scope='row') #{i+1}
+      td #{rows[i]['digi_name']}
+      td #{rows[i]['digi_type']}
+      th #{rows[i]['percentage_share']} %
+      td #{rows[i]['fname']}
+      td #{rows[i]['mname']}
+      td #{rows[i]['ltname']}
+      td #{rows[i]['City']}
+      td #{rows[i]['mobileno']}
+      td #{rows[i]['occupation']}
+      td #{rows[i]['gender']}
+     
+    - }
+    
+    form(method="get" action="/index")
+          input(type="submit", value="Back to Home")    
+    script(src='vendor/jquery/jquery.min.js')  
+    script(src='vendor/bootstrap/js/bootstrap.bundle.min.js')

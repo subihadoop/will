@@ -1,0 +1,85 @@
+html(lang="en")
+  include includes/head.pug
+  body
+    
+    //- Navigation
+    nav(class="navbar navbar-expand-lg navbar-dark bg-dark fixed-bottom")
+      div(class="container")
+        button(class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarResponsive" aria-controls="navbarResponsive" aria-expanded="false" aria-label="Toggle navigation")
+          span(class="navbar-toggler-icon")
+            
+        div(class="collapse navbar-collapse" id="navbarResponsive")
+          ul(class="navbar-nav ml-auto")
+            li(class="nav-item")
+              a(class="nav-link" href="/") logout
+            li(class="nav-item")
+              a(class="nav-link" target="_blank" href="https://github.com/abdulaz1z/nodejs-pug-starter") Documentation
+            
+    //- Page Content
+    section
+      div(class="container")
+        div(class="row")
+          div(class="col-lg-6")
+           //- h1(class="mt-5 text-white") NodeJs-Pug-Starter
+            p(class= "text-light") This project is a simple application skeleton for a NodeJs web app with PugJs templating. You can use it to quickly bootstrap your NodeJs webapp projects and dev environment for these projects.
+  
+  h1= title
+  p(class= "text-dark") Please click and review your will based on bank prescribe else you can submit your will manual
+  li(class="nav-item")
+ 
+    
+  table.table.table-hover.table-striped.table-bordered
+    thead
+      tr
+        th #
+        th Title
+        th Author
+        th Account_Type
+        th Account_Status
+        th Review
+        th Action (Accept or Modify will)
+        th Add or Modify Nominee
+        th Photo
+        th Phone
+        th Comments
+        th Will Modified
+        th Digital Assets
+        th Digital Assets Allocation
+        th Send Mail
+    tbody
+    - for (var i = 0; i < news.length; ++i) {
+       tr
+         th(scope='row') #{i+1}
+         td #{news[i]['title']}
+         td #{news[i]['author_name']}
+         td Saving Account
+         td Active
+         td
+          a(href="/pdf?id="+news[i]['id'])
+           | Download and Review Will
+         td 
+          a(href="/modify")      
+           |Want to Modify Will
+         td 
+          a(href="/add_nominee")      
+           |Want to Modify Nominee 
+         td #{news[i]['image']}
+         td #{news[i]['phone']}
+         td #{news[i]['comment']}
+         td This will modified #{news[i]['will_modified']} Times by #{news[i]['author_name']} on #{news[i]['publish_date']}
+         td 
+          a(href="/digital_assets_main")      
+           |Add/Modified Digital Assets 
+         td 
+          a(href="/assets_allocation")      
+           |Digital Assets Allocation
+         td 
+          a(href="http://localhost:8081/index.html")      
+           |Send mail
+    - }
+    
+     
+    script(src='vendor/jquery/jquery.min.js')  
+    script(src='vendor/bootstrap/js/bootstrap.bundle.min.js')
+    </body>
+    
