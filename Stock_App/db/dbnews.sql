@@ -94,3 +94,29 @@ CREATE TABLE digi_assets
 ALTER TABLE `digi_assets` MODIFY digi_id int(6) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=0;
 COMMIT;
 
+
+
+LOAD DATA LOCAL INFILE "/home/datalakelab/Downloads/Stocks(1).csv" INTO TABLE dbnews.stocks
+FIELDS TERMINATED BY ','
+LINES TERMINATED BY '\n'
+set date_made = current_timestamp();
+
+CREATE TABLE `stocks` (
+  `Stock_Name` varchar(40) DEFAULT NULL,
+  `Live_Price` double DEFAULT NULL,
+  `Change_1` double DEFAULT NULL,
+  `Days_Gain` double DEFAULT NULL,
+  `Change_2` double DEFAULT NULL,
+  `Quantity` double DEFAULT NULL,
+  `Per_Unit_Cost` double DEFAULT NULL,
+  `Investment_Cost` double DEFAULT NULL,
+  `Weight_1` double DEFAULT NULL,
+  `Latest_Value` double DEFAULT NULL,
+  `Weight_2` double DEFAULT NULL,
+  `Unrealized_Gain` double DEFAULT NULL,
+  `Change_3` double DEFAULT NULL,
+  `Realized_Profit_Loss` double DEFAULT NULL,
+  `status` double DEFAULT NULL,
+  `date_made` date DEFAULT NULL,
+  `account` varchar(50) DEFAULT NULL
+) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_0900_ai_ci
