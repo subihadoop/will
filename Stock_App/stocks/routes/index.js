@@ -139,14 +139,12 @@ router.post('/mod', function (req, res, next) {
   counter: Number;
   const counter = 0;
   const counter_num = 0;
-  const id = req.body.id;
-  let comment = req.body.comment;
-  const image = req.body.imageupload;
-  const phone = req.body.phone;
+  const Stock_Name = req.body.Stock_Name;
+  let Quantity = req.body.Quantity;
+  const account = req.body.account;
   createdDate = new Date();
-  console.log("RDS id", phone);
-  console.log(comment);
-  connection.query('select will_modified from tbl_posts where  id = ?', [id],
+  
+  connection.query('select Stock_Name from stocks where  Stock_Name = ?', [Stock_Name],
     (error, results) => {
       if (error) {
         res.render('error');
@@ -157,7 +155,7 @@ router.post('/mod', function (req, res, next) {
         console.log(row.will_modified + 1);
         
         const counter_num = row.will_modified + 1;
-        connection.query('UPDATE tbl_posts SET comment = ? ,image = ? , phone = ? , publish_date = ?,will_modified = ? WHERE id = ?', [comment, image, phone, createdDate, counter_num, id],
+        connection.query('UPDATE stocks SET Quantity = ? , account = ? , date_made = ? WHERE Stock_Name = ?', [Quantity, account, createdDate,  Stock_Name],
 
           (error, results) => {
             if (error) {
@@ -282,6 +280,31 @@ router.post('/add_nom', function (req, res, next) {
     });
 
   
+});
+
+router.use(orm.express("mysql://root:Monu@1234@localhost/dbnews", {
+  define: function (db, models, next) {
+    models.stock = db.define("stocks", {
+      Stock_Name: String,
+      Live_Price: String,
+      Quantity: Number,
+      Per_Unit_Cost: Number,
+      status: String,
+      account: String
+    });
+    next();
+  }
+}));
+router.get('/show_stocks', (req, res) => {
+  var result = req.models.stock.find({
+  }, function (error, stock) {
+    if (error) throw error;
+    res.render('show_stocks', { stock:stock });
+
+  });
+});
+router.get('/show_stocks', (req, res) => {
+  res.render('show_stocks', { title: "stock_digi Assets" });
 });
 
 router.get('/add_digi', (req, res) => {
