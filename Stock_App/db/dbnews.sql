@@ -96,12 +96,19 @@ COMMIT;
 
 
 
-LOAD DATA LOCAL INFILE "/home/datalakelab/Downloads/Stocks(1).csv" INTO TABLE dbnews.stocks
+LOAD DATA LOCAL INFILE "/home/datalakelab/Downloads/Stocks(3).csv" INTO TABLE dbnews.stocks_stage
 FIELDS TERMINATED BY ','
 LINES TERMINATED BY '\n'
+IGNORE 1 LINES
+set file_date = '2022-01-05';
 set date_made = current_timestamp();
 
-CREATE TABLE `stocks` (
+ UPDATE stocks s INNER JOIN stocks p
+   ON s.Stock_Name=p.Stock_Name
+   and 
+   SET s.Live_Price=MAX(p.Live_Price) GROUP BY p.SERVICE_ID
+
+CREATE TABLE `stocks_stage` (
   `Stock_Name` varchar(40) DEFAULT NULL,
   `Live_Price` double DEFAULT NULL,
   `Change_1` double DEFAULT NULL,
@@ -118,5 +125,54 @@ CREATE TABLE `stocks` (
   `Realized_Profit_Loss` double DEFAULT NULL,
   `status` double DEFAULT NULL,
   `date_made` date DEFAULT NULL,
-  `account` varchar(50) DEFAULT NULL
+  `account` varchar(50) DEFAULT NULL,
+  `file_date` date DEFAULT NULL
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_0900_ai_ci
+
+
+CREATE TABLE `stocks_main` (
+  `Stock_Name` varchar(40) DEFAULT NULL,
+  `Live_Price` double DEFAULT NULL,
+  `Change_1` double DEFAULT NULL,
+  `Days_Gain` double DEFAULT NULL,
+  `Change_2` double DEFAULT NULL,
+  `Quantity` double DEFAULT NULL,
+  `Per_Unit_Cost` double DEFAULT NULL,
+  `Investment_Cost` double DEFAULT NULL,
+  `Weight_1` double DEFAULT NULL,
+  `Latest_Value` double DEFAULT NULL,
+  `Weight_2` double DEFAULT NULL,
+  `Unrealized_Gain` double DEFAULT NULL,
+  `Change_3` double DEFAULT NULL,
+  `Realized_Profit_Loss` double DEFAULT NULL,
+  `status` double DEFAULT NULL,
+  `date_made` date DEFAULT NULL,
+  `account` varchar(50) DEFAULT NULL,
+  `file_date` date DEFAULT NULL
+) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_0900_ai_ci
+
+
+UPDATE 
+  stocks_main m 
+JOIN
+  stocks_stage s ON m.Stock_Name=s.Stock_Name and  s.file_date > m.file_date
+SET 
+  m.Stock_Name = s.Stock_Name,
+  m.Live_Price = s.Live_Price,
+  m.Change_1 = s.Change_1,
+  m.Days_Gain = s.Days_Gain,
+  m.Change_2 = s.Change_2,
+  m.Quantity = s.Quantity,
+  m.Per_Unit_Cost = s.Per_Unit_Cost,
+  m.Investment_Cost = s.Investment_Cost,
+  m.Weight_1 = s.Weight_1,
+  m.Latest_Value = s.Latest_Value,
+  m.Weight_2 = s.Weight_2,
+  m.Unrealized_Gain = s.Unrealized_Gain,
+  m.Change_3 = s.Change_3,
+  m.Realized_Profit_Loss = s.Realized_Profit_Loss,
+  m.status = s.status,
+  m.date_made = s.date_made,
+  m.account = s.account,
+  m.file_date = s.file_date;
+

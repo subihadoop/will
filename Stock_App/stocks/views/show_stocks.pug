@@ -43,10 +43,12 @@ table.table.table-hover.table-striped.table-bordered
       td #{stock[i]['status']}
       td #{stock[i]['account']}
     - }
-    form(method="get" action="/show_stocks")
-          input(type="submit", value="Add Digital Assets") 
+    form(method="get" action="/modify")
+          input(type="submit", value="Modify Stocks") 
     form(method="get" action="/index")
-          input(type="submit", value="Back to Home")    
+          input(type="submit", value="Back to Home") 
+     
+ 
     script(src='vendor/jquery/jquery.min.js')  
     script(src='vendor/bootstrap/js/bootstrap.bundle.min.js')
     

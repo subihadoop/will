@@ -173,6 +173,30 @@ router.post('/mod', function (req, res, next) {
 
 });
 
+router.post('/inst', function (req, res, next) {
+  // Connect to MySQL database.
+  var connection = getMySQLConnection();
+  connection.connect();
+  
+  const Stock_Name = req.body.Stock_Name;
+  let Quantity = req.body.Quantity;
+  const account = req.body.account;
+  const Stock_Price = req.body.Stock_Price;
+  const createdDate = new Date();
+ 
+        
+        connection.query('INSERT INTO `stocks` (`Stock_Name`, `Quantity`, `account`, `Per_Unit_Cost`,`date_made` ) VALUES (?,?,?,?,? )',[Stock_Name,Quantity,account,Stock_Price,createdDate]),
+        (error, results) => {
+          if (error) {
+            throw error
+          }
+          else {
+            res.render('record_successfull', { title: "Record updated" });
+          }
+        }
+  
+});
+
 router.use(orm.express("mysql://root:Monu@1234@localhost/dbnews", {
   define: function (db, models, next) {
     models.nom = db.define("nominee", {
