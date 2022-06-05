@@ -96,11 +96,11 @@ COMMIT;
 
 
 
-LOAD DATA LOCAL INFILE "/home/datalakelab/Downloads/Stocks(3).csv" INTO TABLE dbnews.stocks_stage
+LOAD DATA LOCAL INFILE "/home/datalakelab/Downloads/Stocks(4).csv" INTO TABLE dbnews.stocks_stage
 FIELDS TERMINATED BY ','
 LINES TERMINATED BY '\n'
 IGNORE 1 LINES
-set file_date = '2022-01-05';
+set file_date = '2022-04-05';
 set date_made = current_timestamp();
 
  UPDATE stocks s INNER JOIN stocks p
@@ -151,18 +151,18 @@ CREATE TABLE `stocks_main` (
   `file_date` date DEFAULT NULL
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_0900_ai_ci
 
+alter table stocks_main add id int;
 
 UPDATE 
   stocks_main m 
 JOIN
-  stocks_stage s ON m.Stock_Name=s.Stock_Name and  s.file_date > m.file_date
+  stocks_stage s ON upper(m.Stock_Name)=upper(s.Stock_Name) and (s.file_date > m.file_date or m.file_date is null)
 SET 
   m.Stock_Name = s.Stock_Name,
   m.Live_Price = s.Live_Price,
   m.Change_1 = s.Change_1,
   m.Days_Gain = s.Days_Gain,
   m.Change_2 = s.Change_2,
-  m.Quantity = s.Quantity,
   m.Per_Unit_Cost = s.Per_Unit_Cost,
   m.Investment_Cost = s.Investment_Cost,
   m.Weight_1 = s.Weight_1,
@@ -173,6 +173,6 @@ SET
   m.Realized_Profit_Loss = s.Realized_Profit_Loss,
   m.status = s.status,
   m.date_made = s.date_made,
-  m.account = s.account,
   m.file_date = s.file_date;
 
+http://localhost:3000/d/GS7r2xr7z/new-dashboard?orgId=1

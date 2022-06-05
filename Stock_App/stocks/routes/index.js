@@ -144,7 +144,7 @@ router.post('/mod', function (req, res, next) {
   const account = req.body.account;
   createdDate = new Date();
   
-  connection.query('select Stock_Name from stocks where  Stock_Name = ?', [Stock_Name],
+  connection.query('select Stock_Name from stocks_main where  Stock_Name = ?', [Stock_Name],
     (error, results) => {
       if (error) {
         res.render('error');
@@ -155,7 +155,7 @@ router.post('/mod', function (req, res, next) {
         console.log(row.will_modified + 1);
         
         const counter_num = row.will_modified + 1;
-        connection.query('UPDATE stocks SET Quantity = ? , account = ? , date_made = ? WHERE Stock_Name = ?', [Quantity, account, createdDate,  Stock_Name],
+        connection.query('UPDATE stocks_main SET Quantity = ? , account = ? , date_made = ? WHERE Stock_Name = ?', [Quantity, account, createdDate,  Stock_Name],
 
           (error, results) => {
             if (error) {
@@ -185,7 +185,7 @@ router.post('/inst', function (req, res, next) {
   const createdDate = new Date();
  
         
-        connection.query('INSERT INTO `stocks` (`Stock_Name`, `Quantity`, `account`, `Per_Unit_Cost`,`date_made` ) VALUES (?,?,?,?,? )',[Stock_Name,Quantity,account,Stock_Price,createdDate]),
+        connection.query('INSERT INTO `stocks_main` (`Stock_Name`, `Quantity`, `account`, `Per_Unit_Cost`,`date_made` ) VALUES (?,?,?,?,? )',[Stock_Name,Quantity,account,Stock_Price,createdDate]),
         (error, results) => {
           if (error) {
             throw error
@@ -308,7 +308,7 @@ router.post('/add_nom', function (req, res, next) {
 
 router.use(orm.express("mysql://root:Monu@1234@localhost/dbnews", {
   define: function (db, models, next) {
-    models.stock = db.define("stocks", {
+    models.stock = db.define("stocks_main", {
       Stock_Name: String,
       Live_Price: String,
       Quantity: Number,

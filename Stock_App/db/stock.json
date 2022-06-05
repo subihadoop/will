@@ -1,0 +1,657 @@
+{
+    "annotations": {
+      "list": [
+        {
+          "builtIn": 1,
+          "datasource": {
+            "type": "grafana",
+            "uid": "-- Grafana --"
+          },
+          "enable": true,
+          "hide": true,
+          "iconColor": "rgba(0, 211, 255, 1)",
+          "name": "Annotations & Alerts",
+          "target": {
+            "limit": 100,
+            "matchAny": false,
+            "tags": [],
+            "type": "dashboard"
+          },
+          "type": "dashboard"
+        }
+      ]
+    },
+    "editable": true,
+    "fiscalYearStartMonth": 0,
+    "graphTooltip": 0,
+    "id": 2,
+    "links": [],
+    "liveNow": false,
+    "panels": [
+      {
+        "datasource": {
+          "type": "mysql",
+          "uid": "Aj4TzFrnk"
+        },
+        "fieldConfig": {
+          "defaults": {
+            "color": {
+              "mode": "continuous-GrYlRd"
+            },
+            "custom": {
+              "align": "left",
+              "displayMode": "auto",
+              "inspect": false,
+              "minWidth": 50,
+              "width": 80
+            },
+            "mappings": [],
+            "thresholds": {
+              "mode": "absolute",
+              "steps": [
+                {
+                  "color": "green"
+                },
+                {
+                  "color": "red",
+                  "value": 80
+                }
+              ]
+            }
+          },
+          "overrides": []
+        },
+        "gridPos": {
+          "h": 3,
+          "w": 5,
+          "x": 0,
+          "y": 0
+        },
+        "id": 8,
+        "options": {
+          "footer": {
+            "fields": "",
+            "reducer": [
+              "sum"
+            ],
+            "show": false
+          },
+          "showHeader": true
+        },
+        "pluginVersion": "8.5.4",
+        "targets": [
+          {
+            "datasource": {
+              "type": "mysql",
+              "uid": "Aj4TzFrnk"
+            },
+            "format": "table",
+            "group": [],
+            "metricColumn": "none",
+            "rawQuery": true,
+            "rawSql": "SELECT\nsum(case when ((Quantity * Live_Price) - (Quantity * Per_Unit_Cost)) >0 then ((Quantity * Live_Price) - (Quantity * Per_Unit_Cost))  else 0 end) as Profit,\nsum(case when ((Quantity * Live_Price) - (Quantity * Per_Unit_Cost))<0 then ((Quantity * Live_Price) - (Quantity * Per_Unit_Cost)) else 0 end) as Losses\nFROM stocks_main\nwhere account='Jayashri'",
+            "refId": "A",
+            "select": [
+              [
+                {
+                  "params": [
+                    "value"
+                  ],
+                  "type": "column"
+                }
+              ]
+            ],
+            "timeColumn": "time",
+            "where": [
+              {
+                "name": "$__timeFilter",
+                "params": [],
+                "type": "macro"
+              }
+            ]
+          }
+        ],
+        "title": "Profit and losses of Jayashri",
+        "type": "table"
+      },
+      {
+        "datasource": {
+          "type": "mysql",
+          "uid": "Aj4TzFrnk"
+        },
+        "fieldConfig": {
+          "defaults": {
+            "color": {
+              "mode": "continuous-GrYlRd"
+            },
+            "custom": {
+              "align": "left",
+              "displayMode": "auto",
+              "inspect": false,
+              "minWidth": 50,
+              "width": 80
+            },
+            "mappings": [],
+            "thresholds": {
+              "mode": "absolute",
+              "steps": [
+                {
+                  "color": "green"
+                },
+                {
+                  "color": "red",
+                  "value": 80
+                }
+              ]
+            }
+          },
+          "overrides": []
+        },
+        "gridPos": {
+          "h": 3,
+          "w": 5,
+          "x": 5,
+          "y": 0
+        },
+        "id": 10,
+        "options": {
+          "footer": {
+            "fields": "",
+            "reducer": [
+              "sum"
+            ],
+            "show": false
+          },
+          "showHeader": true
+        },
+        "pluginVersion": "8.5.4",
+        "targets": [
+          {
+            "datasource": {
+              "type": "mysql",
+              "uid": "Aj4TzFrnk"
+            },
+            "format": "table",
+            "group": [],
+            "metricColumn": "none",
+            "rawQuery": true,
+            "rawSql": "SELECT\nsum(case when ((Quantity * Live_Price) - (Quantity * Per_Unit_Cost)) >0 then ((Quantity * Live_Price) - (Quantity * Per_Unit_Cost))  else 0 end) as Profit,\nsum(case when ((Quantity * Live_Price) - (Quantity * Per_Unit_Cost))<0 then ((Quantity * Live_Price) - (Quantity * Per_Unit_Cost)) else 0 end) as Losses\nFROM stocks_main\nwhere account='Jayashri_Edles'",
+            "refId": "A",
+            "select": [
+              [
+                {
+                  "params": [
+                    "value"
+                  ],
+                  "type": "column"
+                }
+              ]
+            ],
+            "timeColumn": "time",
+            "where": [
+              {
+                "name": "$__timeFilter",
+                "params": [],
+                "type": "macro"
+              }
+            ]
+          }
+        ],
+        "title": "Profit and losses of Jayashri Edeleswise",
+        "type": "table"
+      },
+      {
+        "datasource": {
+          "type": "mysql",
+          "uid": "Aj4TzFrnk"
+        },
+        "fieldConfig": {
+          "defaults": {
+            "color": {
+              "mode": "continuous-GrYlRd"
+            },
+            "custom": {
+              "align": "left",
+              "displayMode": "auto",
+              "inspect": false,
+              "minWidth": 50,
+              "width": 80
+            },
+            "mappings": [],
+            "thresholds": {
+              "mode": "absolute",
+              "steps": [
+                {
+                  "color": "green"
+                },
+                {
+                  "color": "red",
+                  "value": 80
+                }
+              ]
+            }
+          },
+          "overrides": []
+        },
+        "gridPos": {
+          "h": 3,
+          "w": 5,
+          "x": 10,
+          "y": 0
+        },
+        "id": 12,
+        "options": {
+          "footer": {
+            "fields": "",
+            "reducer": [
+              "sum"
+            ],
+            "show": false
+          },
+          "showHeader": true
+        },
+        "pluginVersion": "8.5.4",
+        "targets": [
+          {
+            "datasource": {
+              "type": "mysql",
+              "uid": "Aj4TzFrnk"
+            },
+            "format": "table",
+            "group": [],
+            "metricColumn": "none",
+            "rawQuery": true,
+            "rawSql": "SELECT\nsum(case when ((Quantity * Live_Price) - (Quantity * Per_Unit_Cost)) >0 then ((Quantity * Live_Price) - (Quantity * Per_Unit_Cost))  else 0 end) as Profit,\nsum(case when ((Quantity * Live_Price) - (Quantity * Per_Unit_Cost))<0 then ((Quantity * Live_Price) - (Quantity * Per_Unit_Cost)) else 0 end) as Losses\nFROM stocks_main\nwhere account='Laxmi'",
+            "refId": "A",
+            "select": [
+              [
+                {
+                  "params": [
+                    "value"
+                  ],
+                  "type": "column"
+                }
+              ]
+            ],
+            "timeColumn": "time",
+            "where": [
+              {
+                "name": "$__timeFilter",
+                "params": [],
+                "type": "macro"
+              }
+            ]
+          }
+        ],
+        "title": "Profit and losses of Laxmi Edeleswise",
+        "type": "table"
+      },
+      {
+        "datasource": {
+          "type": "mysql",
+          "uid": "6DwHhxr7z"
+        },
+        "fieldConfig": {
+          "defaults": {
+            "color": {
+              "mode": "thresholds"
+            },
+            "custom": {
+              "align": "left",
+              "displayMode": "basic",
+              "filterable": false,
+              "inspect": false,
+              "minWidth": 80
+            },
+            "mappings": [],
+            "thresholds": {
+              "mode": "absolute",
+              "steps": [
+                {
+                  "color": "#ea330a"
+                },
+                {
+                  "color": "#4fff30",
+                  "value": 80
+                }
+              ]
+            }
+          },
+          "overrides": []
+        },
+        "gridPos": {
+          "h": 15,
+          "w": 11,
+          "x": 0,
+          "y": 3
+        },
+        "id": 6,
+        "options": {
+          "footer": {
+            "fields": [
+              "Investment cost",
+              "Quantity",
+              "Net profit and losses"
+            ],
+            "reducer": [
+              "sum"
+            ],
+            "show": true
+          },
+          "frameIndex": 0,
+          "showHeader": true
+        },
+        "pluginVersion": "8.5.4",
+        "targets": [
+          {
+            "datasource": {
+              "type": "mysql",
+              "uid": "6DwHhxr7z"
+            },
+            "format": "table",
+            "group": [],
+            "metricColumn": "none",
+            "rawQuery": true,
+            "rawSql": "SELECT\nStock_Name\n ,Quantity,\n Per_Unit_Cost,\n Live_Price,\n Quantity * Per_Unit_Cost as \"Investment cost\",\n (Quantity * Live_Price) - (Quantity * Per_Unit_Cost) as \"Net profit and losses\"\n FROM stocks_main\n where account='Jayashri'",
+            "refId": "A",
+            "select": [
+              [
+                {
+                  "params": [
+                    "value"
+                  ],
+                  "type": "column"
+                }
+              ]
+            ],
+            "table": "stocks",
+            "timeColumn": "time",
+            "where": []
+          },
+          {
+            "datasource": {
+              "type": "mysql",
+              "uid": "6DwHhxr7z"
+            },
+            "format": "table",
+            "group": [],
+            "hide": true,
+            "metricColumn": "none",
+            "rawQuery": true,
+            "rawSql": "SELECT\nsum(case when ((Quantity * Live_Price) - (Quantity * Per_Unit_Cost)) >0 then ((Quantity * Live_Price) - (Quantity * Per_Unit_Cost))  else 0 end) as Positive_Value,\nsum(case when ((Quantity * Live_Price) - (Quantity * Per_Unit_Cost))<0 then ((Quantity * Live_Price) - (Quantity * Per_Unit_Cost)) else 0 end) as Negative_Value\nFROM stocks_main\nwhere account='Jayashri'",
+            "refId": "B",
+            "select": [
+              [
+                {
+                  "params": [
+                    "value"
+                  ],
+                  "type": "column"
+                }
+              ]
+            ],
+            "timeColumn": "time",
+            "where": [
+              {
+                "name": "$__timeFilter",
+                "params": [],
+                "type": "macro"
+              }
+            ]
+          }
+        ],
+        "title": "Jayashri'S Stocks",
+        "type": "table"
+      },
+      {
+        "datasource": {
+          "type": "mysql",
+          "uid": "6DwHhxr7z"
+        },
+        "fieldConfig": {
+          "defaults": {
+            "color": {
+              "mode": "thresholds"
+            },
+            "custom": {
+              "align": "left",
+              "displayMode": "basic",
+              "filterable": false,
+              "inspect": false,
+              "minWidth": 80
+            },
+            "mappings": [],
+            "thresholds": {
+              "mode": "absolute",
+              "steps": [
+                {
+                  "color": "#ea330a"
+                },
+                {
+                  "color": "#4fff30",
+                  "value": 80
+                }
+              ]
+            }
+          },
+          "overrides": []
+        },
+        "gridPos": {
+          "h": 15,
+          "w": 11,
+          "x": 13,
+          "y": 3
+        },
+        "id": 9,
+        "options": {
+          "footer": {
+            "fields": [
+              "Investment cost",
+              "Quantity",
+              "Net profit and losses"
+            ],
+            "reducer": [
+              "sum"
+            ],
+            "show": true
+          },
+          "frameIndex": 0,
+          "showHeader": true
+        },
+        "pluginVersion": "8.5.4",
+        "targets": [
+          {
+            "datasource": {
+              "type": "mysql",
+              "uid": "6DwHhxr7z"
+            },
+            "format": "table",
+            "group": [],
+            "metricColumn": "none",
+            "rawQuery": true,
+            "rawSql": "SELECT\nStock_Name\n ,Quantity,\n Per_Unit_Cost,\n Live_Price,\n Quantity * Per_Unit_Cost as \"Investment cost\",\n (Quantity * Live_Price) - (Quantity * Per_Unit_Cost) as \"Net profit and losses\"\n FROM stocks_main\n where account='Jayashri_Edles'",
+            "refId": "A",
+            "select": [
+              [
+                {
+                  "params": [
+                    "value"
+                  ],
+                  "type": "column"
+                }
+              ]
+            ],
+            "table": "stocks",
+            "timeColumn": "time",
+            "where": []
+          },
+          {
+            "datasource": {
+              "type": "mysql",
+              "uid": "6DwHhxr7z"
+            },
+            "format": "table",
+            "group": [],
+            "hide": true,
+            "metricColumn": "none",
+            "rawQuery": true,
+            "rawSql": "SELECT\nsum(case when ((Quantity * Live_Price) - (Quantity * Per_Unit_Cost)) >0 then ((Quantity * Live_Price) - (Quantity * Per_Unit_Cost))  else 0 end) as Positive_Value,\nsum(case when ((Quantity * Live_Price) - (Quantity * Per_Unit_Cost))<0 then ((Quantity * Live_Price) - (Quantity * Per_Unit_Cost)) else 0 end) as Negative_Value\nFROM stocks_main\nwhere account='Jayashri_Edles'",
+            "refId": "B",
+            "select": [
+              [
+                {
+                  "params": [
+                    "value"
+                  ],
+                  "type": "column"
+                }
+              ]
+            ],
+            "timeColumn": "time",
+            "where": [
+              {
+                "name": "$__timeFilter",
+                "params": [],
+                "type": "macro"
+              }
+            ]
+          }
+        ],
+        "title": "Jayashri'S Edelswise Stocks",
+        "type": "table"
+      },
+      {
+        "datasource": {
+          "type": "mysql",
+          "uid": "6DwHhxr7z"
+        },
+        "fieldConfig": {
+          "defaults": {
+            "color": {
+              "mode": "thresholds"
+            },
+            "custom": {
+              "align": "left",
+              "displayMode": "basic",
+              "filterable": false,
+              "inspect": false,
+              "minWidth": 80
+            },
+            "mappings": [],
+            "thresholds": {
+              "mode": "absolute",
+              "steps": [
+                {
+                  "color": "#ea330a"
+                },
+                {
+                  "color": "#4fff30",
+                  "value": 80
+                }
+              ]
+            }
+          },
+          "overrides": []
+        },
+        "gridPos": {
+          "h": 15,
+          "w": 11,
+          "x": 0,
+          "y": 18
+        },
+        "id": 11,
+        "options": {
+          "footer": {
+            "fields": [
+              "Investment cost",
+              "Quantity",
+              "Net profit and losses"
+            ],
+            "reducer": [
+              "sum"
+            ],
+            "show": true
+          },
+          "frameIndex": 0,
+          "showHeader": true
+        },
+        "pluginVersion": "8.5.4",
+        "targets": [
+          {
+            "datasource": {
+              "type": "mysql",
+              "uid": "6DwHhxr7z"
+            },
+            "format": "table",
+            "group": [],
+            "metricColumn": "none",
+            "rawQuery": true,
+            "rawSql": "SELECT\nStock_Name\n ,Quantity,\n Per_Unit_Cost,\n Live_Price,\n Quantity * Per_Unit_Cost as \"Investment cost\",\n (Quantity * Live_Price) - (Quantity * Per_Unit_Cost) as \"Net profit and losses\"\n FROM stocks_main\n where account='Laxmi'",
+            "refId": "A",
+            "select": [
+              [
+                {
+                  "params": [
+                    "value"
+                  ],
+                  "type": "column"
+                }
+              ]
+            ],
+            "table": "stocks",
+            "timeColumn": "time",
+            "where": []
+          },
+          {
+            "datasource": {
+              "type": "mysql",
+              "uid": "6DwHhxr7z"
+            },
+            "format": "table",
+            "group": [],
+            "hide": true,
+            "metricColumn": "none",
+            "rawQuery": true,
+            "rawSql": "SELECT\nsum(case when ((Quantity * Live_Price) - (Quantity * Per_Unit_Cost)) >0 then ((Quantity * Live_Price) - (Quantity * Per_Unit_Cost))  else 0 end) as Positive_Value,\nsum(case when ((Quantity * Live_Price) - (Quantity * Per_Unit_Cost))<0 then ((Quantity * Live_Price) - (Quantity * Per_Unit_Cost)) else 0 end) as Negative_Value\nFROM stocks_main\nwhere account='Laxmi'",
+            "refId": "B",
+            "select": [
+              [
+                {
+                  "params": [
+                    "value"
+                  ],
+                  "type": "column"
+                }
+              ]
+            ],
+            "timeColumn": "time",
+            "where": [
+              {
+                "name": "$__timeFilter",
+                "params": [],
+                "type": "macro"
+              }
+            ]
+          }
+        ],
+        "title": "Jayashri'S Edelswise Stocks",
+        "type": "table"
+      }
+    ],
+    "schemaVersion": 36,
+    "style": "dark",
+    "tags": [],
+    "templating": {
+      "list": []
+    },
+    "time": {
+      "from": "now-6h",
+      "to": "now"
+    },
+    "timepicker": {},
+    "timezone": "",
+    "title": "Stock Watch",
+    "uid": "fAvnICrnz",
+    "version": 2,
+    "weekStart": ""
+  }
